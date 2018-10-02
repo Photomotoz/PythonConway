@@ -34,13 +34,13 @@ class Conway:
     @staticmethod
     def iterate_grid(g):
 
-        new_conway_grid = deepcopy(g)
+        new_grid = deepcopy(g)
 
         x_len = len(g[0])
         y_len = len(g)
 
         for y, line in enumerate(g):
-            for x, char in enumerate(line):
+            for x in range(len(line)):
 
                 alive = int(g[(x - 1) % x_len][(y - 1) % y_len]) + \
                         int(g[(x - 1) % x_len][y]) + \
@@ -53,12 +53,12 @@ class Conway:
 
                 if g[x][y] is '1':
                     if alive > 3 or alive < 2:
-                        new_conway_grid[x][y] = '0'
+                        new_grid[x][y] = '0'
                 else:
                     if alive is 3:
-                        new_conway_grid[x][y] = '1'
+                        new_grid[x][y] = '1'
 
-        return new_conway_grid
+        return new_grid
 
 
 if __name__ == "__main__":
