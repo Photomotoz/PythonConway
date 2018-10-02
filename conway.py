@@ -10,7 +10,7 @@ class Conway:
 
         parser = argparse.ArgumentParser()
         parser.add_argument('iterations', type=int, help='Number of iterations')
-        parser.add_argument('filename', help='Input file containing starting state')
+        parser.add_argument('filename', help='Input file containing starting state, lines of \'0\'s and  \'1\'s')
 
         args = parser.parse_args()
 
