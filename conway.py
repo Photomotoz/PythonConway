@@ -2,6 +2,8 @@
 
 import argparse
 from copy import deepcopy
+from time import sleep
+from os import system, name
 
 
 class Conway:
@@ -19,17 +21,19 @@ class Conway:
         for line in open(args.filename, 'r'):
             conway_grid.append(list(line.strip()))
 
-        self.draw_grid(conway_grid)
-
         for x in range(args.iterations):
-            conway_grid = self.iterate_grid(conway_grid)
+            self.clear_screen()
             self.draw_grid(conway_grid)
+            sleep(1)
+            conway_grid = self.iterate_grid(conway_grid)
+
+        # Draw final state
+        self.draw_grid(conway_grid)
 
     @staticmethod
     def draw_grid(conway_grid):
         for line in conway_grid:
             print(line)
-        print("**************************************")
 
     @staticmethod
     def iterate_grid(g):
@@ -59,6 +63,13 @@ class Conway:
                         new_grid[x][y] = '1'
 
         return new_grid
+
+    @staticmethod
+    def clear_screen():
+        if name is 'nt':
+            system('cls')
+        else:
+            system('clear')
 
 
 if __name__ == "__main__":
